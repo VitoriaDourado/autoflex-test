@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const pool = require('./config/database');
 
 const app = express();
 
@@ -12,6 +13,13 @@ app.get('/', (req, res) => {
 
 const PORT = 3001;
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
+  try {
+    const result = await pool.query('SELECT NOW()');
+    console.log('Database connected:', result.rows[0]);
+  } catch (error) {
+    console.error('Database connection error:', error);
+  }
+
   console.log(`Server running on port ${PORT}`);
 });
