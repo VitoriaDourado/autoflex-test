@@ -12,9 +12,9 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/products', productRoutes);
+app.use('/products', productRawMaterialRoutes);
 app.use('/raw-materials', rawMaterialRoutes);
-app.use('/product-raw-materials', productRawMaterialRoutes);
-app.use('/production-suggestion', productionRoutes);
+app.use('/production', productionRoutes);
 
 app.get('/', (req, res) => {
   res.json({ message: 'API is running' });
